@@ -1,7 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import { Demo } from './Component/Demo';
+// import { Demo } from './Component/Demo';
 import Login from './Component/Login';
+import Demo2 from './Component/Demo2';
+import { Parent } from './Component/Parent';
+import { Child } from './Component/Child';
+import Demo from './Component/Demo';
+import { UseMemo } from './Component/UseMemo';
 
 function App() {
   return (
@@ -22,7 +27,11 @@ function App() {
         </a>
       </header> */}
       {/* <Demo /> */}
-      <Login />
+      <UseMemo />
+      {/* <Parent /> */}
+      {/* <Child /> */}
+      {/* <Demo2 /> */}
+      {/* <Login /> */}
     </div>
   );
 }
