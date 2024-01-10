@@ -15,7 +15,7 @@ export const UseMemo = () => {
         <br />
         incerement : {increment}
     </>
-  )
+  ) 
 }
 
 const fact = (n) =>{
