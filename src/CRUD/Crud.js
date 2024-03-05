@@ -103,7 +103,7 @@ export const Crud = () => {
                         <TableCell>{item.firstName}</TableCell>
                         <TableCell>{item.lastName}</TableCell>
                         <TableCell>{item.age}</TableCell>
-                        <TableCell>
+                        <TableCell> 
                             <Button onClick={()=>handleEdit(item.id)} sx={{background:"blue", color:"#ffff"}}>Edit</Button>
                             <Button onClick={()=> handleDeleted(item.id)} sx={{background:"red", color:"#ffff"}}>Delete</Button>
                         </TableCell>
