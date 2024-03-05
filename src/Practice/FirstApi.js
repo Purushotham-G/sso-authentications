@@ -48,55 +48,85 @@
 
 // export default FirstApi
 
-import { TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+// import { TextField } from '@mui/material';
+// import React, { useEffect, useState } from 'react'
 
-const FirstApi = () => {
+// const FirstApi = () => {
+//     const [data, setData] = useState([]);
+//     const [searchValue, setSearchValue] = useState('')
+
+//     // normal data fetching
+//     useEffect(()=>{
+//         fetch('https://jsonplaceholder.typicode.com/todos')
+//         .then(resposne => resposne.json())
+//         .then(result => setData(result))
+//     }, []);
+//     console.log(data)
+
+//     // async operations
+
+//     useEffect(()=>{
+//         const fetchingData = async() =>{
+//             try{
+//                 const finalFetchingData = await fetch('https://jsonplaceholder.typicode.com/todos');
+//                 const getResult = await finalFetchingData.json();
+//                 setData(getResult);
+//             }
+//             catch(error){
+//                 console.log("something error", error)
+//             }
+//         }
+//         //debouncing
+//         const debounce = setTimeout(()=>{fetchingData()}, 1000)
+//     })
+
+//     const filterSearched = data.filter((item)=> item.title.toLowerCase().includes(searchValue.toLowerCase()))
+
+//     const handleSearched = (e)=>{
+//         setSearchValue(e.target.value);
+//     }
+//   return (
+//     <>
+//         {data.length > 0 &&
+//             <>
+//             <TextField type = "text" value={searchValue} onChange={handleSearched} />
+//                 {filterSearched.map((item, index)=> item.completed === true && <>
+//                     <p>{item.title}</p>
+//                 </>)}
+//             </>
+//         }
+//     </>
+//   )
+// }
+
+// export default FirstApi
+
+import React, { useEffect, useState } from 'react';
+
+const FirstApi = () =>{
+
     const [data, setData] = useState([]);
-    const [searchValue, setSearchValue] = useState('')
-
-    //normal data fetching
-    // useEffect(()=>{
-    //     fetch('https://jsonplaceholder.typicode.com/todos')
-    //     .then(resposne => resposne.json())
-    //     .then(result => setData(result))
-    // }, []);
-    // console.log(data)
-
-    //async operations
+    const [search, setSearch] = useState('');
 
     useEffect(()=>{
-        const fetchingData = async() =>{
-            try{
-                const finalFetchingData = await fetch('https://jsonplaceholder.typicode.com/todos');
-                const getResult = await finalFetchingData.json();
-                setData(getResult);
-            }
-            catch(error){
-                console.log("something error", error)
-            }
-        }
-        //debouncing
-        const debounce = setTimeout(()=>{fetchingData()}, 1000)
-    })
+        fetch('https://jsonplaceholder.typicode.com/todos')
+        .then(resp => resp.json())
+        .then(result => setData(result))
+    },[])
 
-    const filterSearched = data.filter((item)=> item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    const filterData = data.filter((item, i)=> item.title.toLowerCase().includes(search.toLowerCase()));
 
-    const handleSearched = (e)=>{
-        setSearchValue(e.target.value);
+    console.log(data);
+    const handleChnaged = (e) =>{
+        setSearch(e.target.value)
     }
-  return (
-    <>
-        {data.length > 0 &&
-            <>
-            <TextField type = "text" value={searchValue} onChange={handleSearched} />
-                {filterSearched.map((item, index)=> item.completed === true && <>
-                    <p>{item.title}</p>
-                </>)}
-            </>
-        }
-    </>
-  )
+
+    return(
+        <>
+            <input type='text' value={search} onChange={handleChnaged} />
+            {filterData?.map((item, i)=> <p>{item.title}</p>)}
+        </>
+    )
 }
 
-export default FirstApi
+export default FirstApi;
