@@ -37,21 +37,39 @@
 
 // // export default Parent;
 
+// import React, { useState } from 'react'
+// import {Child } from './Child';
+
+// export const Parent = () => {
+//   const [child, setChild] = useState("hello world, i am your parent components")
+
+//   const handleChanged = (msggg) =>{
+//     setChild(msggg)
+//   }
+//   return (
+//     <>
+//       <p>{child}</p>
+//       <p>{handleChanged}</p>
+//       <Child changesStatus={handleChanged} />
+//     </>
+//   )
+// }
+
 import React, { useState } from 'react'
-import {Child } from './Child';
+import {Child} from './Child'
 
 export const Parent = () => {
-  const [child, setChild] = useState("hello world, i am your parent components")
-
-  const handleChanged = (msggg) =>{
-    setChild(msggg)
+  const [data, setData] = useState('new message is comming');
+  const handleRsult = (msg)=>{
+    setData(msg);
   }
   return (
     <>
-      <p>{child}</p>
-      <p>{handleChanged}</p>
-      <Child changesStatus={handleChanged} />
+      <p>{data}</p>
+      <Child msg ="hello son" handleChaged = {handleRsult}/>
     </>
   )
 }
+
+// export default Parent
 

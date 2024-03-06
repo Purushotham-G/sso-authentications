@@ -101,32 +101,78 @@
 
 // export default FirstApi
 
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 
-const FirstApi = () =>{
+// const FirstApi = () =>{
+
+//     const [data, setData] = useState([]);
+//     const [search, setSearch] = useState('');
+
+//     useEffect(()=>{
+//         fetch('https://jsonplaceholder.typicode.com/todos')
+//         .then(resp => resp.json())
+//         .then(result => setData(result))
+//     },[])
+
+//     const filterData = data.filter((item, i)=> item.title.toLowerCase().includes(search.toLowerCase()));
+
+//     console.log(data);
+//     const handleChnaged = (e) =>{
+//         setSearch(e.target.value)
+//     }
+
+//     return(
+//         <>
+//             <input type='text' value={search} onChange={handleChnaged} />
+//             {filterData?.map((item, i)=> <p>{item.title}</p>)}
+//         </>
+//     )
+// }
+
+// export default FirstApi;
+
+import { TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react'
+
+const FirstApi = () => {
 
     const [data, setData] = useState([]);
     const [search, setSearch] = useState('');
 
+    // useEffect(()=>{
+    //     fetch('https://jsonplaceholder.typicode.com/todos')
+    //     .then(resp => resp.json())
+    //     .then(result => setData(result))
+    // },[]);
+
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/todos')
-        .then(resp => resp.json())
-        .then(result => setData(result))
+        const finalResult = async() =>{
+            try{
+                const getResult = await fetch('https://jsonplaceholder.typicode.com/todos');
+                const resulttt = await getResult.json();
+                setData(resulttt);
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        finalResult();
     },[])
 
-    const filterData = data.filter((item, i)=> item.title.toLowerCase().includes(search.toLowerCase()));
+    const searchResult = data.filter((item, i)=> item.title.toLowerCase().includes(search.toLowerCase()));
 
-    console.log(data);
     const handleChnaged = (e) =>{
-        setSearch(e.target.value)
+        setSearch(e.target.value);
     }
+  return (
+    <>  
+    <TextField type="text" value={search} onChange={handleChnaged} />
+        {searchResult?.map((item, i)=> item.completed === true && <>
+            <p>{i}</p>
+            <p>{item.title}</p>
+        </>)}
 
-    return(
-        <>
-            <input type='text' value={search} onChange={handleChnaged} />
-            {filterData?.map((item, i)=> <p>{item.title}</p>)}
-        </>
-    )
+    </>
+  )
 }
-
-export default FirstApi;
+ export default FirstApi;
