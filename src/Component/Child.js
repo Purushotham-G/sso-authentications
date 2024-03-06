@@ -27,13 +27,27 @@
 
 // // export default Child;
 
+// import React from 'react'
+
+// export const Child = ({changesStatus}) => {
+//   return (
+//     <>
+//       <div>Child</div>
+//       <button onClick={()=>changesStatus("hello , i am from clid components")}>submit</button>
+//     </>
+//   )
+// }
+
+import { Button } from '@mui/material'
 import React from 'react'
 
-export const Child = ({changesStatus}) => {
+export const Child = ({msg, handleChaged}) => {
+
   return (
     <>
-      <div>Child</div>
-      <button onClick={()=>changesStatus("hello , i am from clid components")}>submit</button>
+      <p>{msg}</p>
+      <Button onClick={()=> handleChaged("hello son to incomming new msg")}>Chnaged</Button>
     </>
   )
 }
+
